@@ -5,7 +5,7 @@ import Link from "next/link";
 import db from "@/db";
 import { youtubeCreatorForm } from "@/db/schema";
 import { z } from "zod";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const youtubeFormSchema = z.object({
@@ -26,7 +26,7 @@ const YouTubeForm = () => {
     },
   });
 
-  const onSubmit = async (data: YoutubeFormType) => {
+  const onSubmit : SubmitHandler<YoutubeFormType> = async (data) => {
     await db.insert(youtubeCreatorForm).values(data);
   };
 
